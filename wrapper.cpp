@@ -33,6 +33,7 @@
 
 GLFWwindow *window;
 extern ImVec4 clear_color;
+void (*customBackground)();
 void initialize();
 void render();
 
@@ -118,6 +119,7 @@ int main(int, char**)
     //ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
     //IM_ASSERT(font != NULL);
 
+    customBackground = nullptr;
     initialize();
 
     // Main loop
@@ -144,6 +146,9 @@ int main(int, char**)
         glViewport(0, 0, display_w, display_h);
         glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
         glClear(GL_COLOR_BUFFER_BIT);
+        if (customBackground != nullptr) {
+            customBackground();
+        }
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         glfwSwapBuffers(window);
