@@ -1,4 +1,4 @@
-find_package(glfw3 3.3 REQUIRED)
+find_package(glfw3 3.2 REQUIRED)
 find_package(OpenGL REQUIRED)
 
 set(IMGUI_INCLUDE_DIR ${CMAKE_CURRENT_LIST_DIR})
